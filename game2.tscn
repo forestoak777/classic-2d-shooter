@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://badrbtys2gnxu"]
+
+[ext_resource type="PackedScene" uid="uid://b32476hejmrnj" path="res://player.tscn" id="1_58i86"]
+[ext_resource type="PackedScene" uid="uid://buv1055nhydxp" path="res://enemy.tscn" id="2_i7mu1"]
+[ext_resource type="Script" uid="uid://dgc3ft35uyxas" path="res://cave_gen.gd" id="3_oigcv"]
+[ext_resource type="TileSet" uid="uid://8lp67b7yocph" path="res://cave_foreground_tiles.tres" id="4_6ugsd"]
+
+[node name="Game2" type="Node2D" unique_id=1535505845]
+
+[node name="Player" parent="." unique_id=1949241422 instance=ExtResource("1_58i86")]
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=2042645751]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Enemy" parent="." unique_id=2002651109 instance=ExtResource("2_i7mu1")]
+position = Vector2(51, 70)
+
+[node name="Enemy2" parent="." unique_id=1227967263 instance=ExtResource("2_i7mu1")]
+position = Vector2(161, 66)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1141936606]
+texture_filter = 1
+tile_set = ExtResource("4_6ugsd")
+
+[node name="MapGenerator" type="Node2D" parent="." unique_id=1023525925]
+script = ExtResource("3_oigcv")
