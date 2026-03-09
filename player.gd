@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 
 signal shield_changed
 signal died
@@ -23,12 +23,17 @@ func start():
 	shield = max_shield
 	$GunCooldown.wait_time = cooldown
 	
-func _process(delta):
+func _physics_process(delta):
+	var direction = Vector2.ZERO
 	var input = Input.get_vector("left", "right", "up", "down")
-
-	position += input * speed * delta
-	position = position.clamp(Vector2(8, 8), screensize-Vector2(8, 8))
 	
+	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+	direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+
+	velocity = direction.normalized() * speed
+	move_and_slide()
+
+func _process(delta):
 	look_at(get_global_mouse_position())
 
 	if Input.is_action_pressed("shoot"):

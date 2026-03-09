@@ -35,7 +35,7 @@ func generate_map(noise, tilemaplayer):
 	
 func generate_visuals():
 	#put solid blocks into a list of vector2i s
-	var solidblocklist : Array[Vector2i]
+	var solidblocklist : Array[Vector2i] = []
 	for x in range(MAP_SIZE):
 		for y in range(MAP_SIZE):
 			if (map[x][y] == 1):
