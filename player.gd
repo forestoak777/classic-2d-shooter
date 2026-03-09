@@ -12,14 +12,11 @@ var shield = max_shield:
 	
 var can_shoot = true
 
-@onready var screensize = get_viewport_rect().size
-
 func _ready():
 	start()
 
 func start():
 	show()
-	position = Vector2(screensize.x / 2, screensize.y - 64)
 	shield = max_shield
 	$GunCooldown.wait_time = cooldown
 	

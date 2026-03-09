@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://badrbtys2gnxu"]
+
+[ext_resource type="PackedScene" uid="uid://buv1055nhydxp" path="res://enemy.tscn" id="2_i7mu1"]
+[ext_resource type="Script" uid="uid://dgc3ft35uyxas" path="res://cave_gen.gd" id="3_oigcv"]
+[ext_resource type="TileSet" uid="uid://8lp67b7yocph" path="res://cave_foreground_tiles.tres" id="4_6ugsd"]
+[ext_resource type="Script" uid="uid://bxh8b2u4u3giy" path="res://player.gd" id="4_ck3wt"]
+[ext_resource type="Texture2D" uid="uid://c7uwy5ydmq5in" path="res://Mini Pixel Pack 3/Player ship/Player_ship (16 x 16).png" id="4_pbcc1"]
+[ext_resource type="Texture2D" uid="uid://1huvnyjwjxyr" path="res://Mini Pixel Pack 3/Player ship/Boosters (16 x 16).png" id="5_ck3wt"]
+[ext_resource type="PackedScene" uid="uid://ce2sbgdju6rp7" path="res://bullet.tscn" id="5_cocth"]
+[ext_resource type="Texture2D" uid="uid://4nsv8l6yppaf" path="res://Mini Pixel Pack 3/Player ship/Boosters_left (16 x 16).png" id="6_cocth"]
+[ext_resource type="Texture2D" uid="uid://b1jinxtgd3rv0" path="res://Mini Pixel Pack 3/Player ship/Boosters_right (16 x 16).png" id="7_qw6kx"]
+[ext_resource type="AudioStream" uid="uid://d1w3wktcubbb3" path="res://laserShoot (1).wav" id="8_q0a0q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbfoc"]
+atlas = ExtResource("5_ck3wt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqk0y"]
+atlas = ExtResource("5_ck3wt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvhhs"]
+atlas = ExtResource("6_cocth")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nji5"]
+atlas = ExtResource("6_cocth")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ido4s"]
+atlas = ExtResource("7_qw6kx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7ed7"]
+atlas = ExtResource("7_qw6kx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q770q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbfoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqk0y")
+}],
+"loop": true,
+"name": &"forward",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvhhs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nji5")
+}],
+"loop": true,
+"name": &"left",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ido4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7ed7")
+}],
+"loop": true,
+"name": &"right",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8k1y"]
+size = Vector2(14, 14)
+
+[node name="Game2" type="Node2D" unique_id=1535505845]
+
+[node name="Enemy" parent="." unique_id=2002651109 instance=ExtResource("2_i7mu1")]
+position = Vector2(51, 70)
+
+[node name="Enemy2" parent="." unique_id=1227967263 instance=ExtResource("2_i7mu1")]
+position = Vector2(161, 66)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1141936606]
+texture_filter = 1
+tile_set = ExtResource("4_6ugsd")
+
+[node name="MapGenerator" type="Node2D" parent="." unique_id=1023525925]
+script = ExtResource("3_oigcv")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=612128365]
+motion_mode = 1
+script = ExtResource("4_ck3wt")
+bullet_scene = ExtResource("5_cocth")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=2042645751]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Ship" type="Sprite2D" parent="Player" unique_id=1291420980]
+rotation = 1.5707964
+texture = ExtResource("4_pbcc1")
+hframes = 3
+frame = 1
+
+[node name="Boosters" type="AnimatedSprite2D" parent="Player/Ship" unique_id=107719189]
+position = Vector2(0, 16)
+sprite_frames = SubResource("SpriteFrames_q770q")
+animation = &"forward"
+autoplay = "forward"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1917462382]
+shape = SubResource("RectangleShape2D_f8k1y")
+
+[node name="GunCooldown" type="Timer" parent="Player" unique_id=785297002]
+one_shot = true
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="Player" unique_id=925390669]
+stream = ExtResource("8_q0a0q")
+volume_db = -7.464
