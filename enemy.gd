@@ -1,9 +1,11 @@
-extends Area2D
+extends CharacterBody2D
 
 signal died 
 
 var speed = 20
 var bullet_scene = preload("res://enemy_bullet.tscn")
+
+var explosion_particle = preload("res://explosion_particle.tscn")
 
 @onready var screensize  = get_viewport_rect().size
 
@@ -20,10 +22,17 @@ func _process(delta):
 	if (player_node != null):
 		look_at(player_node.position)
 
+func _physics_process(delta):
+	if player_node:
+		var move_vec = Vector2.from_angle(rotation) * speed * delta
+		move_and_collide(move_vec)
+
 func explode():
 	speed = 0
-	$AnimationPlayer.play("explode")
-	set_deferred("monitorable", false)
-	died.emit(5)
-	await $AnimationPlayer.animation_finished
+	_spawn_effect()
 	queue_free()
+
+func _spawn_effect():
+	var effect = explosion_particle.instantiate()
+	get_tree().root.add_child(effect)
+	effect.global_position = global_position
