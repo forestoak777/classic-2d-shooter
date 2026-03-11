@@ -16,7 +16,7 @@ radius = 4.0
 [node name="Enemy" parent="." unique_id=2002651109 instance=ExtResource("2_i7mu1")]
 position = Vector2(51, 70)
 collision_layer = 4
-collision_mask = 3
+collision_mask = 7
 
 [node name="Enemy2" parent="." unique_id=1227967263 instance=ExtResource("2_i7mu1")]
 position = Vector2(161, 66)
