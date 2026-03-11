@@ -6,18 +6,20 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j08f7"]
 size = Vector2(16, 16)
 
-[node name="Bullet" type="Area2D" unique_id=182525769]
-rotation = 1.5707964
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1613259930]
+rotation = -1.5707964
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_blc85")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1836014016]
+rotation = 3.1415927
 texture = ExtResource("1_d0mkt")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1261680688]
+rotation = 1.5707964
 shape = SubResource("RectangleShape2D_j08f7")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1679018939]
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+rotation = 1.5707964

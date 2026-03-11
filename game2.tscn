@@ -15,6 +15,8 @@ radius = 4.0
 
 [node name="Enemy" parent="." unique_id=2002651109 instance=ExtResource("2_i7mu1")]
 position = Vector2(51, 70)
+collision_layer = 4
+collision_mask = 3
 
 [node name="Enemy2" parent="." unique_id=1227967263 instance=ExtResource("2_i7mu1")]
 position = Vector2(161, 66)
@@ -28,8 +30,10 @@ script = ExtResource("3_oigcv")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=612128365]
 position = Vector2(27, 30)
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("4_ck3wt")
+cooldown = 0.1
 bullet_scene = ExtResource("5_cocth")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=2042645751]
