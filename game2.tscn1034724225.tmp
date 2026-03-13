@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://b7dvumw3f81oy" path="res://ParallaxCave3.png" id="11_f8k1y"]
 [ext_resource type="Script" uid="uid://n0uhvsi2lhhp" path="res://parallax_cave.gd" id="11_q770q"]
 [ext_resource type="Texture2D" uid="uid://bqeef2drvqdbc" path="res://ParallaxCave4.png" id="12_nhfqt"]
-[ext_resource type="Script" uid="uid://bdsv456p0fjtu" path="res://game_data.gd" id="14_f8k1y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mq32o"]
 radius = 4.0
@@ -40,12 +39,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ResourceText" type="Label" parent="Camera2D/Control" unique_id=1748832326 groups=["resource_text"]]
+[node name="Label" type="Label" parent="Camera2D/Control" unique_id=1748832326]
 layout_mode = 1
-offset_left = -254.0
-offset_top = -222.0
-offset_right = -161.0
-offset_bottom = -199.0
+offset_right = 89.0
+offset_bottom = 23.0
 text = "Resource: 0"
 
 [node name="ParallaxCave4" type="Sprite2D" parent="Camera2D" unique_id=1529160495]
@@ -103,8 +100,5 @@ visible = false
 z_index = -10
 position = Vector2(-67, 87)
 texture = ExtResource("11_f8k1y")
-
-[node name="game_data" type="Node" parent="." unique_id=1784711274 groups=["game_data"]]
-script = ExtResource("14_f8k1y")
 
 [connection signal="timeout" from="Player/GunCooldown" to="Player" method="_on_gun_cooldown_timeout"]

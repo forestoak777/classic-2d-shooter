@@ -25,11 +25,14 @@ func _physics_process(delta):
 			collider.explode()
 			queue_free()
 			
+@onready var game_data = get_tree().get_first_node_in_group("game_data")
 
 func _destroy_tile(tilemap: TileMapLayer, hit_pos: Vector2, normal: Vector2):
 	var inset_pos = hit_pos - normal * 1.0
 	var tile_pos = tilemap.local_to_map(tilemap.to_local(inset_pos))
 	tilemap.erase_cell(tile_pos)
+	game_data.increase_resource_count()
+	
 
 func _spawn_effect(pos: Vector2):
 	var effect = explosion_particle.instantiate()
