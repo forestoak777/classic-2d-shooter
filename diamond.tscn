@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cfmt34qs82etb"]
+
+[ext_resource type="Script" uid="uid://sdb34q7u6nov" path="res://diamond.gd" id="1_ljrss"]
+[ext_resource type="Texture2D" uid="uid://cr7usmfo6apt8" path="res://Mini Pixel Pack 3/UI objects/GAME_OVER (72 x 8).png" id="2_xv3r2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0n6i"]
+
+[node name="diamond" type="Area2D" unique_id=2007960131]
+script = ExtResource("1_ljrss")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1317238825]
+scale = Vector2(1.855, 1.855)
+texture = ExtResource("2_xv3r2")
+hframes = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=333198040]
+shape = SubResource("RectangleShape2D_v0n6i")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

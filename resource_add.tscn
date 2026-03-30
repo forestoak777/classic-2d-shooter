@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dog745wf1icq"]
+
+[ext_resource type="Texture2D" uid="uid://pfsv7pr8joy5" path="res://Mini Pixel Pack 3/Items/Power_item (16 x 16).png" id="1_5e6oi"]
+[ext_resource type="Script" uid="uid://bcafgs6dhim44" path="res://resource_add.gd" id="1_jhf7l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0n6i"]
+
+[node name="resourceAdd" type="Area2D" unique_id=1556820485]
+script = ExtResource("1_jhf7l")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=741667403]
+scale = Vector2(1.59, 1.59)
+texture = ExtResource("1_5e6oi")
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1918617392]
+shape = SubResource("RectangleShape2D_v0n6i")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

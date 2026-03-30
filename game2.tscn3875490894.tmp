@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://badrbtys2gnxu"]
 
+[ext_resource type="PackedScene" uid="uid://buv1055nhydxp" path="res://enemy.tscn" id="2_i7mu1"]
 [ext_resource type="Script" uid="uid://dgc3ft35uyxas" path="res://cave_gen.gd" id="3_oigcv"]
 [ext_resource type="Script" uid="uid://dwrykup381tls" path="res://camera.gd" id="3_pbcc1"]
 [ext_resource type="TileSet" uid="uid://8lp67b7yocph" path="res://cave_foreground_tiles.tres" id="4_6ugsd"]
@@ -43,14 +44,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="toggle upgrades panel" type="Button" parent="Camera2D/Control" unique_id=866586733]
-layout_mode = 0
-offset_left = 102.0
-offset_top = -224.0
-offset_right = 256.0
-offset_bottom = -193.0
-text = "Upgrades"
-
 [node name="ResourceText" type="Label" parent="Camera2D/Control" unique_id=1748832326 groups=["resource_text"]]
 layout_mode = 1
 offset_left = -254.0
@@ -75,76 +68,9 @@ offset_right = -161.0
 offset_bottom = -158.0
 text = "Time Remaining: 500"
 
-[node name="Phase2Panel" type="Panel" parent="Camera2D/Control" unique_id=480060387]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -165.0
-offset_top = -141.0
-offset_right = 171.0
-offset_bottom = 167.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Camera2D/Control/Phase2Panel" unique_id=367637940]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -54.0
-offset_right = 54.0
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "Buy Upgrades!"
-horizontal_alignment = 1
-
-[node name="MoneyText2" type="Label" parent="Camera2D/Control/Phase2Panel" unique_id=1914354922 groups=["money_text"]]
-layout_mode = 1
-offset_left = 5.0
-offset_top = 26.0
-offset_right = 143.0
-offset_bottom = 54.0
-text = "Money: 0"
-
-[node name="shoot speed upgrade" type="Button" parent="Camera2D/Control/Phase2Panel" unique_id=322965794]
-layout_mode = 0
-offset_left = 88.0
-offset_top = 78.0
-offset_right = 242.0
-offset_bottom = 109.0
-text = "Shoot Rate (Lvl 1)"
-
-[node name="bullet life upgrade" type="Button" parent="Camera2D/Control/Phase2Panel" unique_id=443621955]
-layout_mode = 0
-offset_left = 88.0
-offset_top = 117.0
-offset_right = 242.0
-offset_bottom = 148.0
-text = "Bullet Life (Lvl 1)"
-
-[node name="bullet spread upgrade" type="Button" parent="Camera2D/Control/Phase2Panel" unique_id=615437243]
-layout_mode = 0
-offset_left = 88.0
-offset_top = 154.0
-offset_right = 242.0
-offset_bottom = 185.0
-text = "Bullet Spread (Lvl 1)"
-
-[node name="bullet speed upgrade" type="Button" parent="Camera2D/Control/Phase2Panel" unique_id=1251494669]
-layout_mode = 0
-offset_left = 88.0
-offset_top = 189.0
-offset_right = 249.0
-offset_bottom = 220.0
-text = "Bullet Speed (Lvl 1)"
-
 [node name="ParallaxCave4" type="Sprite2D" parent="Camera2D" unique_id=1529160495]
 z_index = -11
-position = Vector2(-77, 46)
+position = Vector2(-37, 21)
 scale = Vector2(1.8203126, 2.6265626)
 texture = ExtResource("12_nhfqt")
 
@@ -174,6 +100,9 @@ volume_db = -7.464
 
 [node name="enemies" type="Node2D" parent="." unique_id=1000959864 groups=["enemies"]]
 
+[node name="Enemy" parent="enemies" unique_id=2002651109 instance=ExtResource("2_i7mu1")]
+position = Vector2(26, -4)
+
 [node name="ParallaxCave1" type="Sprite2D" parent="." unique_id=2128746943]
 visible = false
 position = Vector2(-96, 50)
@@ -192,9 +121,13 @@ z_index = -10
 position = Vector2(-67, 87)
 texture = ExtResource("11_f8k1y")
 
-[node name="game_data" type="Node" parent="." unique_id=1784711274 node_paths=PackedStringArray("upgrade_panel") groups=["game_data"]]
+[node name="game_data" type="Node" parent="." unique_id=1784711274 groups=["game_data"]]
 script = ExtResource("14_f8k1y")
-upgrade_panel = NodePath("../Camera2D/Control/Phase2Panel")
 
-[connection signal="pressed" from="Camera2D/Control/toggle upgrades panel" to="game_data" method="_on_toggle_upgrades_panel_pressed"]
+[node name="diamond" parent="." unique_id=2007960131 instance=ExtResource("4_v0n6i")]
+position = Vector2(53, 31)
+
+[node name="resourceAdd" parent="." unique_id=1774625863 instance=ExtResource("15_nhfqt")]
+position = Vector2(102, 21)
+
 [connection signal="timeout" from="Player/GunCooldown" to="Player" method="_on_gun_cooldown_timeout"]

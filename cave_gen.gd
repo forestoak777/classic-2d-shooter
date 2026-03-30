@@ -8,6 +8,11 @@ var MAP_SIZE = 128
 
 @onready var player = get_node("../Player")
 
+@export var resourceAddScene : PackedScene
+
+@export var diamond : PackedScene
+
+
 func _ready():
 
 	
@@ -17,12 +22,34 @@ func _ready():
 	
 	generate_visuals()
 	
+	generate_resource_add_pickups()
+	
+	generate_diamond_pickups()
+	
 func initialize_map_array():
 	for x in range(MAP_SIZE):
 		map.append([])
 		for y in range(MAP_SIZE):
 			map[x].append(0)
-			
+
+func generate_resource_add_pickups():
+	for x in range(MAP_SIZE):
+		for y in range(MAP_SIZE):
+			var rand = randf()
+			if rand >= 0.98:
+				var b = resourceAddScene.instantiate()
+				get_tree().root.add_child.call_deferred(b)
+				b.position = Vector2(x * 16,y * 16)
+
+func generate_diamond_pickups():
+	for x in range(MAP_SIZE):
+		for y in range(MAP_SIZE):
+			var rand = randf()
+			if rand >= 0.995:
+				var b = diamond.instantiate()
+				get_tree().root.add_child.call_deferred(b)
+				b.position = Vector2(x * 16,y * 16)
+
 func generate_map(tilemaplayer):
 
 	#first put in the initial perlin cave gen

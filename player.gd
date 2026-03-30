@@ -7,6 +7,9 @@ signal died
 @export var cooldown = 0.01
 @export var bullet_scene : PackedScene
 @export var max_shield = 10
+
+@onready var game_data = get_tree().get_first_node_in_group("game_data")
+
 var shield = max_shield:
 	set = set_shield
 	
@@ -60,7 +63,13 @@ func _on_gun_cooldown_timeout():
 	can_shoot = true
 
 
-func _on_area_entered(area):
-	if area.is_in_group("enemies"):
-		area.explode()
+func _on_body_entered(body):
+	if body.is_in_group("enemies"):
+		body.explode()
 		shield -= max_shield / 2.0
+
+func player_trigger_resource_add():
+	game_data.increase_resource_count()
+
+func player_trigger_money_add(amt):
+	game_data.trigger_money_add(amt)
