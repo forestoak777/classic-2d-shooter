@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://bq6a8ipyhsa0k"]
+
+[ext_resource type="Script" uid="uid://ith4alhflxtv" path="res://load_scene_button.gd" id="1_fqpck"]
+[ext_resource type="PackedScene" uid="uid://badrbtys2gnxu" path="res://game2.tscn" id="2_x3ncd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vva3n"]
+font_size = 9
+
+[node name="Control" type="Control" unique_id=1249439543]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=997534459]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 189.0
+grow_horizontal = 2
+text = "TEAM RSP-0 HAS FOUND AN ALIEN
+PLANET THAT IS PRODUCING
+HOSTILE WAVELENGTHS. HOWEVER,
+NO LIFE HAS BEEN RECORDED ON THIS PLANET.
+YOU ARE SENT TO INVESTIGATE.
+
+YOUR MISSION: FLY AS DEEP AS POSSIBLE INTO
+THE PLANET WITHOUT RUNNING OUT OF
+RESOURCES. IF THERE ARE THREATS,
+NEUTRALIZE THEM.
+
+CONTROLS: WASD TO MOVE, CLICK TO SHOOT"
+label_settings = SubResource("LabelSettings_vva3n")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=1569733053]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.5
+offset_top = -31.0
+offset_right = 28.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "BEGIN"
+script = ExtResource("1_fqpck")
+sceneToLoad = ExtResource("2_x3ncd")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

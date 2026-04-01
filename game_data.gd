@@ -38,9 +38,6 @@ func trigger_money_add(amt):
 func _update_money_text():
 	money_text.text = "Money: " + str(moneyCount)
 
-func destroyed_tile():
-	pass
-
 @export var upgrade_panel : Panel
 
 func _on_toggle_upgrades_panel_pressed():

@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Classic 2D Shooter"
-run/main_scene="uid://badrbtys2gnxu"
+run/main_scene="uid://bq6a8ipyhsa0k"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Mini Pixel Pack 3/UI objects/Player_life_icon (16 x 16).png"
 
@@ -23,6 +23,7 @@ config/icon="res://Mini Pixel Pack 3/UI objects/Player_life_icon (16 x 16).png"
 
 window/size/viewport_width=256
 window/size/viewport_height=224
+window/size/resizable=false
 window/size/window_width_override=960
 window/size/window_height_override=1280
 window/stretch/mode="canvas_items"

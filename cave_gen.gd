@@ -24,7 +24,7 @@ func _ready():
 	
 	generate_resource_add_pickups()
 	
-	generate_diamond_pickups()
+	#generate_diamond_pickups()
 	
 func initialize_map_array():
 	for x in range(MAP_SIZE):
@@ -107,3 +107,7 @@ func generate_visuals():
 	
 	#now actually place the tiles
 	tilemaplayer.set_cells_terrain_connect(solidblocklist, 0, 0, false)
+
+
+func _on_area_2d_body_entered(body):
+	pass # Replace with function body.

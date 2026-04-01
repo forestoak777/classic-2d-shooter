@@ -8,6 +8,8 @@ signal died
 @export var bullet_scene : PackedScene
 @export var max_shield = 10
 
+@export var death_scene : PackedScene
+
 @onready var game_data = get_tree().get_first_node_in_group("game_data")
 
 var shield = max_shield:
@@ -63,13 +65,14 @@ func _on_gun_cooldown_timeout():
 	can_shoot = true
 
 
-func _on_body_entered(body):
-	if body.is_in_group("enemies"):
-		body.explode()
-		shield -= max_shield / 2.0
-
 func player_trigger_resource_add():
 	game_data.increase_resource_count()
 
 func player_trigger_money_add(amt):
 	game_data.trigger_money_add(amt)
+
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("enemies"):
+		print("ENEMY COLLIDED!")
+		get_tree().change_scene_to_packed(death_scene)

@@ -7,6 +7,7 @@ var explosion_particle = preload("res://explosion_particle.tscn")
 func start(pos, rot):
 	position = pos
 	rotation = rot
+	game_data.decrease_resource_count()
 	
 func _physics_process(delta):
 	var direction = Vector2.from_angle(rotation + deg_to_rad(90))
@@ -30,15 +31,14 @@ func _physics_process(delta):
 func _destroy_tile(tilemap: TileMapLayer, hit_pos: Vector2, normal: Vector2):
 	var inset_pos = hit_pos - normal * 1.0
 	var tile_pos = tilemap.local_to_map(tilemap.to_local(inset_pos))
-	tilemap.erase_cell(tile_pos)
-	game_data.destroyed_tile()
+	if tilemap:
+		tilemap.erase_cell(tile_pos)
 	
 
 func _spawn_effect(pos: Vector2):
 	var effect = explosion_particle.instantiate()
 	get_tree().root.add_child(effect)
 	effect.global_position = pos
-	game_data.decrease_resource_count()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()

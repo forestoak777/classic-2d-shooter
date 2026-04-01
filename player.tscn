@@ -1,102 +1,47 @@
 [gd_scene format=3 uid="uid://b32476hejmrnj"]
 
-[ext_resource type="Script" uid="uid://bxh8b2u4u3giy" path="res://player.gd" id="1_4pouc"]
-[ext_resource type="Texture2D" uid="uid://c7uwy5ydmq5in" path="res://Mini Pixel Pack 3/Player ship/Player_ship (16 x 16).png" id="1_jhf5r"]
-[ext_resource type="Texture2D" uid="uid://1huvnyjwjxyr" path="res://Mini Pixel Pack 3/Player ship/Boosters (16 x 16).png" id="2_6cdot"]
-[ext_resource type="PackedScene" uid="uid://ce2sbgdju6rp7" path="res://bullet.tscn" id="2_6pkbm"]
-[ext_resource type="Texture2D" uid="uid://4nsv8l6yppaf" path="res://Mini Pixel Pack 3/Player ship/Boosters_left (16 x 16).png" id="3_n7bvj"]
-[ext_resource type="Texture2D" uid="uid://b1jinxtgd3rv0" path="res://Mini Pixel Pack 3/Player ship/Boosters_right (16 x 16).png" id="4_bbrn4"]
-[ext_resource type="AudioStream" uid="uid://d1w3wktcubbb3" path="res://laserShoot (1).wav" id="7_1jxqw"]
+[ext_resource type="Script" uid="uid://bxh8b2u4u3giy" path="res://player.gd" id="1_sweqy"]
+[ext_resource type="PackedScene" uid="uid://ce2sbgdju6rp7" path="res://bullet.tscn" id="2_2hs0m"]
+[ext_resource type="PackedScene" uid="uid://hntvdn8i25kw" path="res://death_scene.tscn" id="3_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://c7uwy5ydmq5in" path="res://Mini Pixel Pack 3/Player ship/Player_ship (16 x 16).png" id="4_dw050"]
+[ext_resource type="AudioStream" uid="uid://d1w3wktcubbb3" path="res://laserShoot (1).wav" id="5_b26j0"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rbfoc"]
-atlas = ExtResource("2_6cdot")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_mq32o"]
+radius = 4.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kqk0y"]
-atlas = ExtResource("2_6cdot")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_8tca4"]
+radius = 5.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dvhhs"]
-atlas = ExtResource("3_n7bvj")
-region = Rect2(0, 0, 16, 16)
+[node name="Player" type="CharacterBody2D" unique_id=1880834690 groups=["player"]]
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_sweqy")
+cooldown = 0.1
+bullet_scene = ExtResource("2_2hs0m")
+death_scene = ExtResource("3_1jxqw")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7nji5"]
-atlas = ExtResource("3_n7bvj")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ido4s"]
-atlas = ExtResource("4_bbrn4")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u7ed7"]
-atlas = ExtResource("4_bbrn4")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_p6f8n"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rbfoc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kqk0y")
-}],
-"loop": true,
-"name": &"forward",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dvhhs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7nji5")
-}],
-"loop": true,
-"name": &"left",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ido4s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u7ed7")
-}],
-"loop": true,
-"name": &"right",
-"speed": 10.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_11ea1"]
-size = Vector2(14, 14)
-
-[node name="Player" type="Area2D" unique_id=1953452416]
-script = ExtResource("1_4pouc")
-bullet_scene = ExtResource("2_6pkbm")
-
-[node name="Ship" type="Sprite2D" parent="." unique_id=1365021192]
+[node name="Ship" type="Sprite2D" parent="." unique_id=1646665709]
+position = Vector2(5.105, 0)
 rotation = 1.5707964
-texture = ExtResource("1_jhf5r")
-hframes = 3
-frame = 1
+scale = Vector2(0.9641252, 1.2026192)
+texture = ExtResource("4_dw050")
 
-[node name="Boosters" type="AnimatedSprite2D" parent="Ship" unique_id=1975710923]
-position = Vector2(0, 16)
-sprite_frames = SubResource("SpriteFrames_p6f8n")
-animation = &"forward"
-autoplay = "forward"
-frame_progress = 0.710315
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=401972361]
+shape = SubResource("CircleShape2D_mq32o")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1034967511]
-shape = SubResource("RectangleShape2D_11ea1")
-
-[node name="GunCooldown" type="Timer" parent="." unique_id=19148263]
+[node name="GunCooldown" type="Timer" parent="." unique_id=1973519784]
 one_shot = true
 
-[node name="ShootSound" type="AudioStreamPlayer2D" parent="." unique_id=859466996]
-stream = ExtResource("7_1jxqw")
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="." unique_id=2080719611]
+stream = ExtResource("5_b26j0")
 volume_db = -7.464
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[node name="Area2D" type="Area2D" parent="." unique_id=1846428327]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=507843326]
+shape = SubResource("CircleShape2D_8tca4")
+
 [connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

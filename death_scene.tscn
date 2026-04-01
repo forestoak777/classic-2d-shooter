@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://hntvdn8i25kw"]
+
+[ext_resource type="Script" uid="uid://ith4alhflxtv" path="res://load_scene_button.gd" id="1_y2fqr"]
+[ext_resource type="PackedScene" uid="uid://badrbtys2gnxu" path="res://game2.tscn" id="2_fxiyg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vva3n"]
+font_size = 9
+
+[node name="Control" type="Control" unique_id=1249439543]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=997534459]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 189.0
+grow_horizontal = 2
+text = "you ded"
+label_settings = SubResource("LabelSettings_vva3n")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=1569733053]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.5
+offset_top = -31.0
+offset_right = 28.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "retry?"
+script = ExtResource("1_y2fqr")
+sceneToLoad = ExtResource("2_fxiyg")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
